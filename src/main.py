@@ -1,3 +1,4 @@
+import csv
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -43,4 +44,9 @@ if r.ok:
     book_infos["review_rating"] = rating_map[rating["class"][1]]
     book_infos["image_url"] = "https://books.toscrape.com/" + image_source[0]["src"][6:]
 
-    print(book_infos)
+    with open("books-data/single_book.csv", "w", newline="") as csvfile:
+        fieldnames = list(book_infos)
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerow(book_infos)
