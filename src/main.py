@@ -7,7 +7,13 @@ category_url = (
 )
 
 books_urls = get_books_urls(url=category_url)
-print(books_urls)
+books = []
+
+for link in books_urls:
+    book = scrap_a_book(url="https://books.toscrape.com/catalogue/" + link)
+    books.append(book)
+
+print(books)
 
 # with open("books-data/category.csv", "w", newline="") as csvfile:
 #     fieldnames = list(book_data)
