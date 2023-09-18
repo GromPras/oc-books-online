@@ -49,9 +49,10 @@ def scrap_a_book(url: str) -> dict[str, str]:
         book_infos["price_including_tax"] = table[3].text
         book_infos["price_excluding_tax"] = table[2].text
         book_infos["number_available"] = re.findall(r"\d+", table[5].text)[0]
-        book_infos["product_description"] = (
-            soup.find("div", id="product_description").find_next("p").text
-        )
+        if soup.find("div", id="product_description"):
+            book_infos["product_description"] = (
+                soup.find("div", id="product_description").find_next("p").text
+            )
         book_infos["category"] = category
         book_infos["review_rating"] = rating_map[rating["class"][1]]
         book_infos["image_url"] = (
