@@ -9,7 +9,9 @@ for category in categories:
     print(category["name"])
     category_books = scrap_category(category["url"])
     with open(
-        f"books-data/{category['name'].lower()}.csv", "w", newline=""
+        f"books-data/{category['name'].lower().replace(' ', '_')}.csv",
+        "w",
+        newline="",
     ) as csvfile:
         fieldnames = list(category_books[0])
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
