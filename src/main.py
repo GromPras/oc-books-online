@@ -5,8 +5,10 @@ from category_scrap import get_categories, scrap_category
 categories: list = get_categories("https://books.toscrape.com/index.html")
 books = []
 
-for category in categories:
+for index, category in enumerate(categories):
+    percentage = round((int(index) / len(categories)) * 100)
     print(category["name"])
+    print(f"[{percentage}%]")
     category_books = scrap_category(category["url"])
     with open(
         f"books-data/{category['name'].lower().replace(' ', '_')}.csv",

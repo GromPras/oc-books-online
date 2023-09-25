@@ -98,10 +98,10 @@ def get_image(image_url: str, book_category: str, book_title: str):
             .replace(":", "")
             .replace(".", "")
             .replace(",", "")
+            .replace("/", "-")
         )
         image_path = f"{image_dir}/{img_title}.jpg"
         with open(image_path, "wb") as f:
             shutil.copyfileobj(res.raw, f)
-        print("Image saved for " + book_title)
     else:
         print("[ERROR]: Could not find image for " + book_title)
