@@ -1,5 +1,7 @@
 import re
 import requests
+import shutil
+import os
 from bs4 import BeautifulSoup
 
 
@@ -58,4 +60,26 @@ def scrap_a_book(url: str) -> dict[str, str]:
         book_infos["image_url"] = (
             "https://books.toscrape.com/" + image_source[0]["src"][6:]
         )
+
+        get_image(
+            book_infos["image_url"],
+            book_infos["category"],
+            book_infos["title"],
+        )
     return book_infos
+
+
+def get_image(image_url: str, book_category: str, book_title: str):
+    res = requests.get(image_url, stream=True)
+    print(os.path)
+    if res.ok:
+        image_dir = f"./books-data/images/{book_category}"
+        if not os.path.exists(image_dir):
+            os.makedirs(image_dir)
+
+        image_path = f"{image_dir}/{book_title}.jpg"
+        with open(image_path, "wb") as f:
+            shutil.copyfileobj(res.raw, f)
+        print("Image saved for " + book_title)
+    else:
+        print("[ERROR]: Could not find image for " + book_title)
