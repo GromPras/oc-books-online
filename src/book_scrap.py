@@ -105,7 +105,7 @@ def get_image(image_url: str, book_category: str, book_title: str) -> None:
     """
     res = requests.get(image_url, stream=True)
     if res.ok:
-        image_dir = f"./books-data/images/{book_category}"
+        image_dir = f"./books-data/images/{book_category.lower().replace(' ', '_')}"
 
         # Make sure the folder exists before saving the file
         if not os.path.exists(image_dir):
