@@ -105,7 +105,9 @@ def get_image(image_url: str, book_category: str, book_title: str) -> None:
     """
     res = requests.get(image_url, stream=True)
     if res.ok:
-        image_dir = f"./books-data/images/{book_category.lower().replace(' ', '_')}"
+        image_dir = (
+            f"./books-data/images/{book_category.lower().replace(' ', '_')}"
+        )
 
         # Make sure the folder exists before saving the file
         if not os.path.exists(image_dir):
@@ -122,7 +124,10 @@ def get_image(image_url: str, book_category: str, book_title: str) -> None:
             .replace("/", "-")
         )
         image_path = f"{image_dir}/{img_title}.jpg"
-        with open(image_path, "wb") as f:
-            shutil.copyfileobj(res.raw, f)
+
+        # download the file if it does not exists
+        if not os.path.exists(image_path):
+            with open(image_path, "wb") as f:
+                shutil.copyfileobj(res.raw, f)
     else:
         print("[ERROR]: Could not find image for " + book_title)
