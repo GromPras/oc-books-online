@@ -29,6 +29,12 @@ cd oc-projet_2
 python3 -m venv {/path/to/new/virtual/environment}
 ```
 
+Activate your newly created virtual environment
+
+```sh
+source {/path/to/new/virtual/environment}/bin/activate
+```
+
 Install required packages
 
 ```sh
@@ -36,12 +42,6 @@ pip install -r requirements.txt
 ```
 
 ### Post Installation
-
-Activate your newly created virtual environment
-
-```sh
-source {/path/to/new/virtual/environment}/bin/activate
-```
 
 Run the following command to **scrap**!
 

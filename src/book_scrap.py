@@ -3,7 +3,7 @@ import requests
 import shutil
 import os
 from bs4 import BeautifulSoup
-from types.book import Book
+from custom_types.book import Book
 
 
 def scrap_a_book(url: str) -> Book:

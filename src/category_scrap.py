@@ -2,7 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from book_scrap import scrap_a_book
-from types.book import Book
+from custom_types.book import Book
 
 
 def get_books_urls(category_url: str) -> list[str]:

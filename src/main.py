@@ -1,6 +1,6 @@
 import csv
 from category_scrap import get_categories, scrap_category
-from types.book import Book
+from custom_types.book import Book
 
 
 # Get the categories urls to scrap
