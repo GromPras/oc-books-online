@@ -46,6 +46,7 @@ def scrap_a_book(url: str) -> Book:
         image = soup.find("img") if not None else "NC"
         image_source = image["src"][6:] if image != "NC" else "NC"
 
+        book_infos["product_page_url"] = url
         book_infos["universal_product_code"] = (
             table[0].text if not None else "NC"
         )
