@@ -17,18 +17,7 @@ def scrap_a_book(url: str) -> Book:
     """
 
     # prepare book's data as a dict
-    book_infos: Book = {
-        "product_page_url": url,
-        "universal_product_code": "",
-        "title": "",
-        "price_including_tax": "",
-        "price_excluding_tax": "",
-        "number_available": "",
-        "product_description": "",
-        "category": "",
-        "review_rating": "",
-        "image_url": "",
-    }
+    book_infos: Book = {}
     # converts classes to a [1:5] note
     rating_map = {
         "One": "1",
@@ -57,7 +46,9 @@ def scrap_a_book(url: str) -> Book:
         image = soup.find("img") if not None else "NC"
         image_source = image["src"][6:] if image != "NC" else "NC"
 
-        book_infos["upc"] = table[0].text if not None else "NC"
+        book_infos["universal_product_code"] = (
+            table[0].text if not None else "NC"
+        )
         book_infos["title"] = soup.find("h1").text if not None else "NC"
         book_infos["price_including_tax"] = table[3].text if not None else "NC"
         book_infos["price_excluding_tax"] = table[2].text if not None else "NC"
